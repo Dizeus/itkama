@@ -1,0 +1,21 @@
+.post {
+  display: flex;
+  column-gap: 10px;
+  padding: 10px 0;
+}
+.post:not(:last-child) {
+  border-bottom: 2px solid rgba(146, 145, 145, 0.658);
+}
+.post__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.post__text {
+  margin-bottom: 10px;
+}
+.post__like {
+  background-color: #447094;
+  padding: 3px;
+  color: white;
+}

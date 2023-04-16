@@ -1,0 +1,21 @@
+.search {
+  height: 100%;
+  background-color: #4a79a0;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}
+.search__input {
+  height: 100%;
+  background-color: #4a79a0;
+  color: #bad5eb;
+}
+.search__input::placeholder {
+  color: #bad5eb;
+}
+.search__btn {
+  width: 20px;
+  height: 20px;
+  fill: #bad5eb;
+  cursor: pointer;
+}

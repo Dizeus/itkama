@@ -1,0 +1,15 @@
+.dialog {
+  display: flex;
+}
+.dialog__names {
+  display: flex;
+  flex: 1 1 50%;
+  flex-direction: column;
+}
+.dialog__name {
+  padding: 10px 5px;
+  border: 1px solid rgb(146, 146, 146);
+}
+.dialog__text {
+  flex: 1 1 50%;
+}

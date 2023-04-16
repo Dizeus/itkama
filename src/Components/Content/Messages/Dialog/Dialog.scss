@@ -1,0 +1,19 @@
+
+.dialog {
+      display: flex;
+
+		&__names {
+            display:flex;
+            flex: 1 1 50%;
+            flex-direction: column;
+		}
+
+		&__name {
+            padding: 10px 5px;
+            border: 1px solid rgb(146, 146, 146);
+		}
+
+            &__text{
+                  flex: 1 1 50%;
+            }
+}

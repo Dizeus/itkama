@@ -1,0 +1,20 @@
+
+.App {
+    display: grid;
+    grid-template-rows: 70px 1fr;
+    grid-template-columns: 150px 1fr;
+    grid-template-areas: 
+        "header header"
+        "side schedule";
+    height: 100vh;
+}
+
+
+
+//------------------------------------------------------------------------------------//
+[class*="__container"]{
+	max-width: 1057px;
+	margin: 0 auto;
+	padding-right: 15px;
+	padding-left: 15px;
+}

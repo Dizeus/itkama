@@ -1,0 +1,25 @@
+.header {
+    width: 100%;
+    background-color: #447094;
+    grid-area: header;
+        &__container{
+            display: flex;
+            height: 100%;
+            align-items: center;
+            justify-content: space-between;           
+        }
+   
+		&__logo {
+            width: 30px;
+            height: 30px;
+            fill: #bad5eb;
+		}
+
+		&__navbar {
+            height: 100%;
+		}
+
+		&__search {
+
+		}
+}

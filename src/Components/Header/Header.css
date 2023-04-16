@@ -1,0 +1,19 @@
+.header {
+  width: 100%;
+  background-color: #447094;
+  grid-area: header;
+}
+.header__container {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+.header__logo {
+  width: 30px;
+  height: 30px;
+  fill: #bad5eb;
+}
+.header__navbar {
+  height: 100%;
+}
