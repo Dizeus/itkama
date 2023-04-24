@@ -1,10 +1,11 @@
 import Dialog from "./Dialog/Dialog";
 import "./Messages.css";
+import DialogContainer from "./Dialog/DialogContainer";
 
-function Messages(props) {
+function Messages() {
   return (
     <div className="main__page messages">
-      <Dialog users={props.users} />
+      <DialogContainer/>
     </div>
   );
 }

@@ -6,24 +6,22 @@ import Games from "./Games/Games";
 import { Routes, Route } from "react-router-dom";
 import Settings from "./Settings/Settings";
 
-function Content(props) {
-   console.log(props);
+function Content() {
+
   return (
     <main className="main">
       <Routes>
         <Route
           path="/home"
           element={
-            <Home
-              updateNewPostText={props.updateNewPostText}
-              addPost={props.addPost}
-              posts={props.content.home}
-            />
+            <Home/>
           }
         />
         <Route
           path="/messages/*"
-          element={<Messages users={props.content.messages} />}
+          element={
+            <Messages/>
+          }
         />
         <Route path="/comunities" element={<Comunities />} />
         <Route path="/games" element={<Games />} />

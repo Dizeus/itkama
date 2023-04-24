@@ -1,32 +1,25 @@
 import "./PostForm.css";
 import React from "react";
+import { addPostActionCreator, updateNewPostTextActionCreator } from "../../../../../redux/content-reducer/home-reducer.js";
 
 
 
 
 function PostForm(props) {
 
-  let newPostRef = React.createRef();
-
-  let addPost = ()=>{
-    let txt = newPostRef.current.value;
-    props.addPost(txt);
-  }
-  let updateNewPostText=()=>{
-    let txt = newPostRef.current.value;
-    props.updateNewPostText(txt);
-    console.log(txt)
+  let updateNewPostText=(event)=>{
+    props.updateNewPostText(event.target.value)
   }
   return (
     <form className="posts__form form">
       <label className="form__title">New post</label>
       <textarea
         onChange={updateNewPostText}
-        ref={newPostRef}
         className="form__input"
+        value={props.newPostText}
         placeholder="What do you think about?"
       ></textarea>
-      <button onClick={addPost} className="form__btn" type="button">
+      <button onClick={props.addPost} className="form__btn" type="button">
         Add post
       </button>
     </form>
