@@ -1,22 +1,22 @@
-import { addMessageCreator, updateNewMessageCreator } from "../../../../redux/content-reducer/messages-reducer";
+import {
+  addMessage,
+} from "../../../../redux/content-reducer/messages-reducer";
 import "./Dialog.css";
 import Dialog from "./Dialog";
 import {connect} from "react-redux";
+import {withAuthNavigate} from "../../../../hoc/withAuthNavigate";
+import {compose} from "redux";
 
 
 const mapStateToProps = (state)=>{
   return {
     messages: state.content.messages,
+    isLogin: state.auth.isLogin
   }
 }
-const mapDispatchToProps = (dispatch)=>{
-  return {
-    onChangeNewMessage: (txt)=>{
-      dispatch(updateNewMessageCreator(txt));
-    },
-    addMessage:()=>{dispatch(addMessageCreator());}
-  }
-}
-const DialogContainer = connect(mapStateToProps, mapDispatchToProps)(Dialog);
-
-export default DialogContainer;
+export default compose(
+    connect(mapStateToProps, {
+      addMessage,
+    }),
+    withAuthNavigate
+)(Dialog);

@@ -3,3 +3,12 @@
   font-weight: 700;
   margin-bottom: 20px;
 }
+.form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  margin: 0 0 10px 0;
+}
+.form__input {
+  background-color: antiquewhite;
+}

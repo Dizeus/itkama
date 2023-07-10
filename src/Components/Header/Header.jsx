@@ -1,11 +1,13 @@
 import "./Header.css"
 import SearchForm from "./SearchForm/SearchForm";
+import HeaderProfile from "./HeaderProfile/HeaderProfile";
+import {NavLink} from "react-router-dom";
 
-function Header(){
+function Header(props){
     return (
       <header className="header">
         <div className="header__container">
-          <svg className="header__logo"version="1.0" viewBox="0 0 1253.000000 1280.000000">
+          <svg className="header__logo" version="1.0" viewBox="0 0 1253.000000 1280.000000">
             <g transform="translate(0.000000,1280.000000) scale(0.100000,-0.100000)">
             <path d="M7855 12794 c-127 -21 -304 -86 -396 -144 -27 -18 -73 -59 -103 -91
             l-53 -59 -159 -3 c-101 -2 -188 -10 -239 -21 -455 -99 -843 -378 -1000 -719
@@ -120,6 +122,10 @@ function Header(){
           <nav className="header__navbar">
             <SearchForm/>
           </nav>
+          {props.isLogin?
+              <HeaderProfile {...props}/>:
+              <NavLink to='/login'>Login</NavLink>
+          }
         </div>
       </header>
     );

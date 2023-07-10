@@ -29,9 +29,14 @@
 				border-bottom: 1px solid rgb(201, 199, 199);
 			}
 		}
-		&__profesion {
+		&__status {
 		}
-
+		&__status-input {
+			background-color: #8ac5e7;
+			color: white;
+			padding: 8px;
+			border-radius: 3px;
+		}
 		&__age {
 		}
 

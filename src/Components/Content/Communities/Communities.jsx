@@ -1,7 +1,7 @@
 //import "./Content.css";
 
-function Comunities() {
+function Communities() {
   return <div>Customunity</div>;
 }
 
-export default Comunities;
+export default Communities;

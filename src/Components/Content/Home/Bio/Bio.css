@@ -29,9 +29,17 @@
   padding: 0 0 5px 0;
   border-bottom: 1px solid rgb(201, 199, 199);
 }
+.description__status-input {
+  background-color: #8ac5e7;
+  color: white;
+  padding: 8px;
+  border-radius: 3px;
+}
 .description__categories {
   font-family: Monospace;
   font-size: 12px;
   font-weight: 700;
   color: rgb(169, 168, 168);
 }
+
+/*# sourceMappingURL=Bio.css.map */
