@@ -2,14 +2,15 @@ import {api} from "../api/api";
 
 let SET_IS_FETCHING = "SET_IS_FETCHING";
 let SET_AUTH = "SET_AUTH";
-
+const CAPTCHA_URL_SUCCESS = "CAPTCHA_URL_SUCCESS";
 let initialState = {
     userId: null,
     email: null,
     login: null,
     password: null,
     isFetching: true,
-    isLogin: false
+    isLogin: false,
+    captchaUrl: null
 };
 function authReducer(state = initialState, action){
     switch (action.type) {
@@ -27,6 +28,12 @@ function authReducer(state = initialState, action){
                 ...state,
                 isFetching: action.isFetching
             }
+        case CAPTCHA_URL_SUCCESS:
+            console.log(action.captchaUrl)
+            return {
+                ...state,
+                captchaUrl: action.captchaUrl,
+            }
       default:
         return state;
     }
@@ -34,6 +41,8 @@ function authReducer(state = initialState, action){
 export const setAuth = (id,email,login, isLogin) => ({ type: SET_AUTH, id, email, login, isLogin });
 
 export const setIsFetching = (isFetching) => ({ type: SET_IS_FETCHING, isFetching });
+
+export const requestCaptchaUrlSuccess = (captchaUrl) => ({ type: CAPTCHA_URL_SUCCESS, captchaUrl });
 
 export const getAuthUser = () =>{
     return (dispatch)=>{
@@ -48,19 +57,33 @@ export const getAuthUser = () =>{
     }
 }
 
-export const login = (email, password, rememberMe, setStatus) =>{
+export const login = (email, password, rememberMe, setStatus, captcha) =>{
     return (dispatch)=>{
-        api.login(email, password, rememberMe).then(
+        api.login(email, password, rememberMe, captcha).then(
             (data)=> {
                 if(data.resultCode===0) {
                     dispatch(getAuthUser())
                 }else{
+                    if(data.resultCode===10){
+                        api.captchaUrl().then(
+                            (data)=> {
+                                dispatch(requestCaptchaUrlSuccess(data.url))
+                            })
+                    }
                     setStatus({error:data.messages})
-                    console.log({error:data.messages})
+
                 }
             })
     }
 }
+/*export const requestCaptchaUrl = () =>{
+    return (dispatch)=>{
+        api.captchaUrl().then(
+            (data)=> {
+                requestCaptchaUrlSuccess(data.url)
+            })
+    }
+}*/
 export const logout = (email, password, rememberMe) =>{
     return (dispatch)=>{
         api.logout().then(

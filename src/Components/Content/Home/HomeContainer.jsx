@@ -1,6 +1,12 @@
 import React from "react";
 import {connect} from "react-redux";
-import {getUser, getUserStatus, updateUserStatus} from "../../../redux/content-reducer/home-reducer";
+import {
+    getUser,
+    getUserStatus,
+    saveNewProfileData,
+    savePhoto,
+    updateUserStatus
+} from "../../../redux/content-reducer/home-reducer";
 import {useParams} from 'react-router-dom';
 import Home from "./Home";
 import {withAuthNavigate} from "../../../hoc/withAuthNavigate";
@@ -18,14 +24,21 @@ class HomeContainer extends React.Component{
         this.props.getUserStatus(userId);
     }
     componentDidUpdate(prevProps, prevState, snapshot) {
-        console.log(this.props.match.params.userId)
-        if(prevProps.match.params.userId !=  this.props.match.params.userId)
-            console.log(this.props.match.params.userId)
+        if(prevProps.match.params.userId !=  this.props.match.params.userId) {
+            let userId = this.props.match.params.userId;
+            if(!userId){
+                userId = this.props.userId;
+            }
+            this.props.getUser(userId)
+            this.props.getUserStatus(userId);
+        }
     }
 
     render() {
-        return <Home isFetching={this.props.home.isFetching} userProfile={this.props.home.userProfile}
-                     userStatus={this.props.home.userStatus} updateUserStatus={this.props.updateUserStatus}/>;
+        return <Home saveNewProfileData={this.props.saveNewProfileData} isFetching={this.props.home.isFetching} userProfile={this.props.home.userProfile}
+                     userStatus={this.props.home.userStatus} updateUserStatus={this.props.updateUserStatus}
+                    isOwner={!this.props.match.params.userId} savePhoto={this.props.savePhoto}
+        />;
     }
 
 
@@ -44,7 +57,7 @@ let mapStateToProps = (state) => ({
     userId: state.auth.userId,
 })
 export default compose(
-    connect(mapStateToProps,{getUser, getUserStatus, updateUserStatus}),
+    connect(mapStateToProps,{getUser, getUserStatus, updateUserStatus, savePhoto, saveNewProfileData}),
     withRouter,
     withAuthNavigate
 )(HomeContainer);

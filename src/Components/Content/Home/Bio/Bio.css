@@ -3,6 +3,14 @@
   column-gap: 50px;
   margin: 0 0 20px 0;
 }
+.bio__avatar-edit {
+  max-width: 60px;
+  display: block;
+
+}
+.bio__photo{
+  overflow: visible;
+}
 .bio__avatar {
   max-width: 60px;
   flex: 1 0 60px;

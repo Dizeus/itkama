@@ -1,4 +1,5 @@
 import axios from "axios";
+import {saveNewProfileData} from "../redux/content-reducer/home-reducer";
 
 let custom = axios.create({
     withCredentials:true,
@@ -34,15 +35,29 @@ export let api = {
     updateUserStatus(userStatus){
         return custom.put(`/profile/status`, {status: userStatus})
     },
-    login(email, password, rememberMe){
-
-        return custom.post('auth/login', {email, password, rememberMe}).then((response)=> {
-            console.log(response.data)
+    savePhoto(file){
+        const formData = new FormData();
+        formData.append("image", file)
+        return custom.put(`/profile/photo`, formData, {
+            headers:{
+                "Content-Type": "multipart/form-data",
+            }
+        } )
+    },
+    login(email, password, rememberMe, captcha){
+        return custom.post('auth/login', {email, password, rememberMe, captcha}).then((response)=> {
             return response.data
         });
     },
-    logout(email, password, rememberMe){
+    logout(){
         return custom.delete('auth/login').then((response)=>response.data);
+    },
+    captchaUrl(){
+        return custom.get('security/get-captcha-url').then((response)=>response.data);
+    },
+
+    saveNewProfileData(values){
+        return custom.put(`/profile`, values)
     }
 }
 

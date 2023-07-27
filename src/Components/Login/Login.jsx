@@ -9,7 +9,7 @@ function Login(props){
    (
         <div>
             <h1>Login</h1>
-            <LoginForm login = {props.login}/>
+            <LoginForm login = {props.login} captchaUrl={props.captchaUrl}/>
         </div>
     );
 }
@@ -17,7 +17,7 @@ function Login(props){
 let LoginForm = (props)=>{
 
     return (<Formik
-        initialValues={{ email: '', password: '', rememberMe: false }}
+        initialValues={{ email: '', password: '', rememberMe: false, captcha: '' }}
         validate={values => {
             const errors = {};
             if (!values.email) {
@@ -37,8 +37,7 @@ let LoginForm = (props)=>{
 
         }}
         onSubmit={(values, { setSubmitting, setStatus }) => {
-            props.login(values.email, values.password, values.rememberMe, setStatus);
-            console.log(setStatus)
+            props.login(values.email, values.password, values.rememberMe, setStatus, values.captcha);
             setSubmitting(false);
         }}
     >
@@ -82,6 +81,18 @@ let LoginForm = (props)=>{
                         value={values.rememberMe}
                     />remember me
                 </div>
+                {props.captchaUrl && <div>
+                    <img src={props.captchaUrl} alt="captcha"/>
+                    <div>
+                        <input
+                            type="text"
+                            name="captcha"
+                            onChange={handleChange}
+                            onBlur={handleBlur}
+                            value={values.captcha}
+                        />
+                    </div>
+                </div>}
                 {status && <div>{status.error}</div>       }
                 <button type="submit" disabled={isSubmitting}>
                     Sign in
@@ -93,5 +104,6 @@ let LoginForm = (props)=>{
 
 const mapStateToProps = (state) =>({
     isAuth: state.auth.isLogin,
+    captchaUrl: state.auth.captchaUrl
 })
 export default connect(mapStateToProps, {login})(Login);

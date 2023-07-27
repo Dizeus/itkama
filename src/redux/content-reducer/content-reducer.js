@@ -4,7 +4,15 @@ import friendsReducer from "./friends-reducer";
 
 let initialState = {
   home: {
-    userProfile: null,
+    userProfile: {
+      aboutMe:null,
+      contacts: {facebook: null, website: null, vk: null, twitter: null, instagram: null, mainLink:null,youtube:null,github:null},
+      fullName:"Ze_Se_Leon",
+      lookingForAJob: false,
+      lookingForAJobDescription: null,
+      photos:{small: 'https://social-network.samuraijs.com/activecontent/images/users/28912/user-small.jpg?v=11', large: 'https://social-network.samuraijs.com/activecontent/images/users/28912/user.jpg?v=11'},
+      userId: 28912
+    },
     userStatus: "",
     posts: [
       {
@@ -46,7 +54,6 @@ let initialState = {
   },
 };
 function contentReducer(state = initialState, action) {
-
   return {
     ...state,
     home: homeReducer(state.home, action),
